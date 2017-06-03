@@ -1,0 +1,69 @@
+<% include ../includes/header.html %>
+<div>
+	<!--主要内容-->
+<div class="container main-container">
+    <div class="header-container">
+        <div class="row">
+            <div class="col-md-2" style="padding:5%;">
+            	<img src="/images/<%= user.icon %>" style="width:100px; height:100px;" id="myicon">
+                <div class="onload-img" align="center">
+                	<font style="font-size:14px;">修改图像</font>
+                    <input type="file" onChange="onloadImg(this.files)" style="opacity:0;width:100%;height:30px;margin-top:-30px; cursor:pointer; z-index:999;">
+                </div>
+            </div>
+            <div class="col-md-5" style="padding:5%;">
+                <div><h1><%=user.name%></h1></div>
+                <div>爱心值：
+                    <span>
+                        <img src="/images/love.jpg" style="width:20px; height:20px; ">
+                        <img src="/images/love.jpg" style="width:20px; height:20px; ">
+                        <img src="/images/love.jpg" style="width:20px; height:20px; ">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container second-container">
+        <div class="row row-plus" style="border-bottom:1px #ccc solid;">
+            <a href="/myblog/<%=user._id%>" class="btn btn-link btn-link-move" style="text-decoration:none;" id="self">我的文章</a>
+            <a href="/messlist" class="btn btn-link btn-link-move" style="text-decoration:none;">我的消息
+                <%if (totalmess){%>
+            <span class="badge"><%= totalmess %></span>
+            <%}%></a>
+            <a href="/usercenter" class="btn btn-link btn-link-move" style="text-decoration:none;" >基本信息</a>
+            <a href="/account" class="btn btn-link btn-link-move" style="text-decoration:none;">账户信息</a>
+        </div>
+	<% 
+		if (bloglist){
+			for (var i = 0; i < bloglist.length; i++){ 
+			var blogitem = bloglist[i];
+	%> 
+			<div class="blog-title"><a href="/blog/<%= blogitem._id%>" style="color:#000">
+			<%= blogitem.title %></a>
+			</div>
+			<div class="usermess">
+				<div><img src="/images/<%= user.icon %>" /></div>
+				<div><%= user.name %></div>
+				<div><%= blogitem.date %></div>
+				<div><%= blogitem.tag %></div>
+			</div>
+			<div class="blog-content"><%= blogitem.content %></div>
+			<div class="footer">
+				<div>浏览：<%= blogitem.look_num %></div>
+				<div>喜欢：<%= blogitem.like_num %></div>
+				<div>评论：<%= blogitem.review_num %></div>
+            </div>
+			<hr/>
+	<%
+		}
+	}else{
+	%>
+		<div>这位大侠，你太懒了。。。</div>
+	<%
+	}
+	%>
+</div>
+</div>
+</div>
+</div>
+<% include ../includes/footer.html %>

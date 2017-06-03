@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="stylesheet" type="text/css" href="/css/header.css">
+	<link rel="stylesheet" type="text/css" href="/css/footer.css">
+	<link rel="stylesheet" type="text/css" href="/css/body.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/usermess.css">
+	<link rel="stylesheet" type="text/css" href="/css/index.css">
+	<link rel="stylesheet" type="text/css" href="/css/login.css">
+	<link rel="stylesheet" type="text/css" href="/css/list.css">
+	
+
+	<style type="text/css">
+		.nav-background{
+			background-color: #295E6A;
+		}
+	</style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+
+<nav class="nav-background">
+	<div class="nav-title"><a href="/bloglist/">小静博客</a></div>
+	<div class="nav-list">
+		<ul>
+			<a href="/bloglist/"><li>发现</li></a>
+			<a href="#"><li>关注</li></a>
+			<a href="/messlist/"><li>消息
+                        <% if (user)
+							{ if (totalmess){
+							%>
+								<span><%= totalmess %></span>
+							<%
+								}
+							}
+						%></li></a>
+			<a href="#"><li>关于</li></a>
+		</ul>
+	</div>
+	<% if (!user)
+		{
+	%>
+	<div class="nav-login">
+		<div class="login"><a href="/login/">登录</a></div>
+		<div class="register"><a href="/register">注册</a></div>
+	</div>
+	<%
+	}else{
+	%>
+	<div class="nav-user">
+		<div class="user-img">
+			<a href="/myblog/<%= user._id %>"><img src="/images/<%= user.icon%>" /></a>
+		</div>
+		<a href="/writeBlog/" class="btn btn-primary" style="height:40px">写博客</a>
+	</div>
+	<%
+	}
+	%>
+</nav>

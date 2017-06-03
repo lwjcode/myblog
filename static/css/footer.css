@@ -1,0 +1,14 @@
+footer{
+	padding: 5%;
+	background: #fff;
+	width:100%;
+	text-align: center;
+}
+
+.foot-word{
+	font-size: 2rem;
+}
+
+footer div{
+	padding: 3% 0 0.5% 0;
+}

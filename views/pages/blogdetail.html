@@ -1,0 +1,86 @@
+<% include ../includes/header.html %>
+<div style="padding-top:80px;" class="blogwarp">
+	<% if (error != '')
+	{
+	%>
+		<div><%= error %></div>
+	<%
+	}else{
+	%>
+	<div class="blog-title">
+		<p><%= blog.title %></p>
+	</div>
+	<div class="user-warp">
+		<div class="user-img">
+			<a href="#"><img src="/images/<%= author.icon %>" /></a>
+		</div>
+		<div class="user-warp-item">
+			<div class="user-date">
+				<div><a href="#"><%= author.name %></a></div>
+				<div><%= blog.date %></div>
+			</div>
+			<div>
+				<div>浏览：<%= blog.look_num %></div>
+				<div onclick="likeit('<%= blog._id %>')" style="cursor: pointer;">喜欢：<span id="like"><%= blog.like_num %><span></div>
+				<div id="review">评论：<%= blog.review_num %></div>
+			</div>
+		</div>
+	</div>
+	<div class="blog-content">
+		<p><%= blog.content %></p>
+	</div>
+	<hr>
+	<div class="review-container">
+		<textarea name="reviewdialog" id="reviewdialog" class="form-control" rows="5" placeholder="写下你的评论..."></textarea>
+		<br>
+		<input type="button" name="btn-send" class="btn btn-primary" id="btn-send" value="发送" onclick="submitReview('<%= blog._id %>')">
+	</div>
+		<%
+			if (reviewlist){
+			for (var i = 0; i < reviewlist.length; i++){
+		%>
+			<div class="reviewlist">
+			<div class="itemit">
+				<div class="usermess">
+					<div class="user-img"><a href="#"><img src="/images/<%= reviewlist[i].hosticon %>" /></a></div>
+					<div class="user-name" id="<%= reviewlist[i]._id %>">
+					<%= reviewlist[i].hostname %></div>
+					<div class="date"><%= reviewlist[i].date %></div>
+				</div>
+				<div class="reviewcontent">
+					<span style="font-size: 1.2rem"><%= reviewlist[i].hostcontent %></span>
+					<span class="btn-reply" onclick="showReplyDialog('<%= reviewlist[i].hostname %>', '<%= i %>', '<%= reviewlist[i].hostid %>')">回复</span>
+				</div>
+				<% if (reviewlist[i].reviewitem){
+					var item = reviewlist[i].reviewitem;
+					for (var j = 0; j < item.length; j++){
+				%>
+					<div class="eachother">
+						<a href="#"><%= item[j].reusername %></a>
+						<span>@</span>
+						<a href="#"><%= item[j].username %></a>: 
+						<span><%= item[j].content %></span>
+						<span class="btn-reply" onclick="showReplyDialog('<%= item[j].reusername %> %>', '<%= i %>', '<%= item[j].reuserid %>')">回复</span>
+						<div><%= item[j].date %></div>
+					</div>
+				<%		
+					}
+				}
+				%>
+				<div class="dialog<%= i %>" id="replydialog">
+					<textarea name="reviewdialog" id="<%=i%>" class="form-control" rows="3" placeholder="写下你的评论...">
+						
+					</textarea><br>
+					<input type="button" name="btn-send" id="btn-send" class="btn btn-primary" value="发送" onclick="reply('<%= blog._id %>', '<%= i %>', '<%= reviewlist[i]._id %>')">
+				</div>
+			</div>
+			<hr>
+	</div>
+	<%
+			}
+		}
+	}
+	%>
+</div>
+<script type="text/javascript" src="/js/blogdetail.js"></script>
+<% include ../includes/footer.html %>

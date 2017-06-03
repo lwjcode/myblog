@@ -1,0 +1,24 @@
+<% include ../includes/header.html %>
+<article>
+<div style="margin: 8% 10% 0 10%">
+	<h1>写博客</h1>
+	<form action="/submitBlog" method="post" style="margin-top:50px">
+		<div class="form-group">
+		    <label for="blogtitle">文章标题：</label>
+		    <input type="text" class="form-control" id="blogtitle" placeholder="博客标题" name="blogtitle">
+		</div>
+		<div class="form-group">
+		    <label for="blogcontent">文章内容：</label>
+		    <textarea class="form-control" id="blogcontent" name="blogcontent" placeholder="博客详情。。。" rows="10"></textarea>
+		</div>
+		<div class="form-group">
+		    <label for="blogtag">文章标签：</label>
+		    <input type="text" class="form-control" id="blogtag" placeholder="博客标签" name="blogtag">
+		</div>
+		<div>
+			<input type="submit" name="submit" value="发表" id="submit" class="btn btn-primary">
+		</div>
+	</form>
+</div>
+<% include ../includes/footer.html %>
+</article>

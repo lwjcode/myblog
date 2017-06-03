@@ -1,0 +1,102 @@
+.alllist{
+	margin: 0 20%;
+	margin-top:80px;
+}
+
+.usermess{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.usermess div{
+	margin-right:20px;
+}
+
+.usermess div img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.usermess div a{
+	text-decoration: none;
+}
+
+.blog-title{
+	margin-top:10px;
+}
+
+.blog-title a{
+	font-size: 1.3rem;
+}
+
+.blog-content{
+	padding: 10px 0;
+}
+
+.footer{
+	margin-top:10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	color: #bbb;
+}
+
+.footer div{
+	padding-right: 10px;
+}
+
+.blogwarp{
+	margin: 0 20%;
+}
+
+.blogwarp .blog-title p{
+	font-size: 1.5rem
+}
+
+.user-warp{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+/*.user-warp div{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+*/
+
+.user-warp-item div{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	margin-right:20px;
+	color: #bbb;
+}
+
+#btn-send{
+	margin-left: 90%;
+}
+
+.reviewcontent{
+	padding: 10px;
+}
+
+.btn-reply{
+	color: #bbb;
+	cursor: pointer;
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.eachother{
+	margin:10px 0;
+}
+
+#replydialog{
+	display: none;
+}

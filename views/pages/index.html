@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>小静博客——好时光</title>
+	<meta charset="utf-8">
+	<meta name="viewpost" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/index.css">
+
+	<!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+
+<div class="shadow"></div>
+
+<article>
+	<section class="mainbody-first">
+		<div style="font-size:2rem">留住感动，从今天开始</div>
+		<div style="font-size:3rem; font-weight: bold;color: #fff">小静博客</div>
+		<div style="font-size:2rem">今天，你做了什么，可以让自己记住</div>
+		<div style="font-size:1.5rem">进入博客，发现不一样的自己</div>
+		<div>
+			<a class="btn btn-primary btn-lg" href="/login/">进入博客</a>
+		</div>
+	</section>
+	<section class="mainbody-second">
+		<a href="#dir1" class="item item1"><div>分享</div></a>
+		<a href="#dir2" class="item item2"><div>感动</div></a>
+		<a href="#dir3" class="item item3"><div>交流</div></a>
+	</section>
+	<section class="mainbody-third">
+		<div class="row-dir" id="dir1">
+			<div><img src="images/9.jpg" /></div>
+			<div><p>每次因为看见别人写的新东西，自己就也想做一个，不知道是不是一个好习惯哎。微信小程序已经出来很久了，</p></div>
+		</div>
+		<hr>
+		<div class="row-dir" id="dir2">
+			<div><p>每次因为看见别人写的新东西，自己就也想做一个，不知道是不是一个好习惯哎。微信小程序已经出来很久了，</p></div>
+			<div><img src="images/9.jpg" /></div>
+		</div>
+		<hr>
+		<div class="row-dir" id="dir3">
+			<div><img src="images/9.jpg" /></div>
+			<div><p>每次因为看见别人写的新东西，自己就也想做一个，不知道是不是一个好习惯哎。微信小程序已经出来很久了，</p></div>
+		</div>
+	</section>
+
+	<footer>
+		<div>
+			<a class="btn btn-primary btn-lg">快快加入吧！</a>
+			<div class="foot-word">体验从未有过的体验</div>
+			<hr>
+			<div>
+				<p>© Copyright HighOJ</p>
+				<p>2011-2015 京ICP备12034000号-2 京公网安备11010802011553号</p>
+				<p>Lovingly made by WPH95</p>
+			</div>
+		</div>
+	</footer>
+
+</article>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	$(window).scroll(function () {
+        if ($("nav").offset().top > 200){
+            $("nav").addClass("nav-background");
+        }
+        else{
+            $("nav").removeClass("nav-background");
+        }
+    });
+</script>
+
+</body>
+</html>

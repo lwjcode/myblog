@@ -1,0 +1,40 @@
+<% include ../includes/header.html %>
+<article>
+	<div class="alllist">
+	<% 
+		if (!error){
+			for (var i = 0; i < bloglist.length; i++){ 
+			var blogitem = bloglist[i];
+			var useritem = userlist[i];
+	%>
+			<div class="usermess">
+				<div><a href=""><img src="/images/<%= useritem.icon %>" />
+				</a></div>
+				<div><a href="#"><%= useritem.name %></a></div>
+				<div><%= blogitem.date %></div>
+				<div><%= blogitem.tag %></div>
+			</div>
+			<div class="blog-title"><a href="/blog/<%= blogitem._id%>" style="color:#000">
+			<%= blogitem.title %></a>
+			</div>
+			<div class="blog-content"><%= blogitem.content %></div>
+			<div class="footer">
+				<div>浏览：<%= blogitem.look_num %></div>
+				<div>喜欢：<%= blogitem.like_num %></div>
+				<div>评论：<%= blogitem.review_num %></div>
+			</div>
+			<hr>
+	<%
+		}
+	}else{
+	%>
+		<div><%= error %></div>
+	<%
+	}
+	%>
+	</div>
+	<% include ../includes/footer.html %>
+</article>
+
+</body>
+</html>
