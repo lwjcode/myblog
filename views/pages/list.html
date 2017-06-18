@@ -3,7 +3,7 @@
 	<div class="alllist">
 	<% 
 		if (!error){
-			for (var i = 0; i < bloglist.length; i++){ 
+			for (var i = bloglist.length - 1; i >= 0; i--){ 
 			var blogitem = bloglist[i];
 			var useritem = userlist[i];
 	%>
@@ -19,9 +19,15 @@
 			</div>
 			<div class="blog-content"><%= blogitem.content %></div>
 			<div class="footer">
-				<div>浏览：<%= blogitem.look_num %></div>
-				<div>喜欢：<%= blogitem.like_num %></div>
-				<div>评论：<%= blogitem.review_num %></div>
+				<div>
+				<i class="fa fa-eye" aria-hidden="true">&nbsp;<%= blogitem.look_num %></i>
+				</div>
+				<div>
+				<i class="fa fa-heart" aria-hidden="true">&nbsp;<span id="like"><%= blogitem.like_num %><span></i>
+				</div>
+				<div id="review">
+				<i class="fa fa-envelope-open" aria-hidden="true">&nbsp;<%= blogitem.review_num %></i>
+				</div>
 			</div>
 			<hr>
 	<%

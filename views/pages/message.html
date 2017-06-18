@@ -51,7 +51,7 @@
         </div>
 		<% 
 			if (!error){
-			for (var i = 0; i < messlist.length; i++){
+			for (var i = messlist.length - 1; i >= 0; i--){
 		%>
 		<div style="margin-top: 40px;">
 			<% if (messlist[i].actiontype == 1) {%>

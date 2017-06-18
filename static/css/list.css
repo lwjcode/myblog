@@ -33,7 +33,23 @@
 }
 
 .blog-content{
+	position: relative;
 	padding: 10px 0;
+	line-height: 30px;
+	height: 100px;
+	overflow:hidden; 
+	text-overflow: ellipsis;
+	display:-webkit-box; 
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:3; 
+}
+
+.blog-content:after {
+    bottom: 0;
+    right: 0;
+    content: "...";
+    padding: 0 -40px 0 0;
+    position: absolute;
 }
 
 .footer{

@@ -35,7 +35,7 @@
         </div>
 	<% 
 		if (bloglist){
-			for (var i = 0; i < bloglist.length; i++){ 
+			for (var i = bloglist.length - 1; i >= 0; i--){ 
 			var blogitem = bloglist[i];
 	%> 
 			<div class="blog-title"><a href="/blog/<%= blogitem._id%>" style="color:#000">
@@ -47,7 +47,7 @@
 				<div><%= blogitem.date %></div>
 				<div><%= blogitem.tag %></div>
 			</div>
-			<div class="blog-content"><%= blogitem.content %></div>
+			<div class="blog-content" style="line-height: 30px"><%= blogitem.content %></div>
 			<div class="footer">
 				<div>浏览：<%= blogitem.look_num %></div>
 				<div>喜欢：<%= blogitem.like_num %></div>

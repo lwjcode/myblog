@@ -36,6 +36,7 @@ function submitReview(blogid){
     req.onreadystatechange = function (){
         if (req.readyState == 4){
            if (req.responseText == 'ok'){
+           		location.reload();
            		console.log('ok');
            }else{
            		console.log(req.responseText + '出错了！');

@@ -26,8 +26,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="blog-content">
-		<p><%= blog.content %></p>
+	<div>
+		<p style="line-height: 30px"><%= blog.content %></p>
 	</div>
 	<hr>
 	<div class="review-container">
@@ -48,7 +48,7 @@
 					<div class="date"><%= reviewlist[i].date %></div>
 				</div>
 				<div class="reviewcontent">
-					<span style="font-size: 1.2rem"><%= reviewlist[i].hostcontent %></span>
+					<span><%= reviewlist[i].hostcontent %></span>
 					<span class="btn-reply" onclick="showReplyDialog('<%= reviewlist[i].hostname %>', '<%= i %>', '<%= reviewlist[i].hostid %>')">回复</span>
 				</div>
 				<% if (reviewlist[i].reviewitem){
