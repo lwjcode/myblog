@@ -44,7 +44,10 @@ console.log('Server is runnng on ' + port);
 
 //连接mongodb数据库
 mongoose.Promise = global.Promise;  //不加这句会报错
-mongoose.connect('mongodb://127.0.0.1/myblog', { useNewUrlParser: true })
+mongoose.connect('mongodb://127.0.0.1/myblog', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => {
     console.log('Mongoose connection to Mongodb successfully!');
   }).catch((err) => {
