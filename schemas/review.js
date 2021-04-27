@@ -8,23 +8,23 @@ var Schema = require('mongoose').Schema;
 */
 
 var reviewSchema = new Schema({
-		blogid: String,  //文章id
-		reviewlist: [{
-			hostid: String, //某层楼主id
-			hostname: String,  //楼主name
-			hosticon: String, //楼主icon
-			hostcontent: String, //楼主评论内容
-			date: String, //评论日期
-			//针对楼主的评论
-			reviewitem:[{
-				userid: String, //评论者id
-				username: String, //评论者name
-				reuserid: String, //回复者id
-				reusername: String, //回复者name
-				content: String, //评论内容
-				date: String //评论日期
-			}]
-		}]
-	});
+  blogid: String,  //文章id
+  reviewlist: [{
+    hostid: String, //某层楼主id
+    hostname: String,  //楼主name
+    hosticon: String, //楼主icon
+    hostcontent: String, //楼主评论内容
+    date: String, //评论日期
+    //针对楼主的评论
+    reviewitem: [{
+      userid: String, //评论者id
+      username: String, //评论者name
+      reuserid: String, //回复者id
+      reusername: String, //回复者name
+      content: String, //评论内容
+      date: String //评论日期
+    }]
+  }]
+});
 
 module.exports = reviewSchema;

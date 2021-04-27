@@ -1,99 +1,108 @@
 <% include ../includes/header.html %>
 
-<!--主要内容-->
-<!--主要内容-->
-<div class="container main-container">
+  <!--主要内容-->
+  <!--主要内容-->
+  <div class="container main-container">
     <div class="header-container">
-        <div class="row">
-            <div class="col-md-2" style="padding:5%;">
-            	<img src="/images/<%= user.icon %>" style="width:100px; height:100px;" id="myicon">
-                <div class="onload-img" align="center">
-                	<font style="font-size:14px;">修改图像</font>
-                    <input type="file" onChange="onloadImg(this.files)" style="opacity:0;width:100%;height:30px;margin-top:-30px; cursor:pointer; z-index:999;">
-                </div>
-            </div>
-            <div class="col-md-5" style="padding:5%;">
-                <div><h1><%=user.name%></h1></div>
-                <div>爱心值：
-                    <span>
-                        <img src="/images/love.jpg" style="width:20px; height:20px; ">
-                        <img src="/images/love.jpg" style="width:20px; height:20px; ">
-                        <img src="/images/love.jpg" style="width:20px; height:20px; ">
-                    </span>
-                </div>
-            </div>
+      <div class="row">
+        <div class="col-md-2" style="padding:5%;">
+          <img src="/images/<%= user.icon %>" style="width:100px; height:100px;" id="myicon">
+          <div class="onload-img" align="center">
+            <font style="font-size:14px;">修改图像</font>
+            <input type="file" onChange="onloadImg(this.files)"
+              style="opacity:0;width:100%;height:30px;margin-top:-30px; cursor:pointer; z-index:999;">
+          </div>
         </div>
+        <div class="col-md-5" style="padding:5%;">
+          <div>
+            <h1>
+              <%=user.name%>
+            </h1>
+          </div>
+          <div>爱心值：
+            <span>
+              <img src="/images/love.jpg" style="width:20px; height:20px; ">
+              <img src="/images/love.jpg" style="width:20px; height:20px; ">
+              <img src="/images/love.jpg" style="width:20px; height:20px; ">
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="container second-container">
-        <div class="row row-plus" style="border-bottom:1px #ccc solid;">
-            <a href="/myblog/<%=user._id%>" class="btn btn-link btn-link-move" style="text-decoration:none;">我的文章</a>
-            <a href="/messlist/" class="btn btn-link btn-link-move" style="text-decoration:none;">我的消息
-                <%if (totalmess){%>
-            <span class="badge"><%= totalmess %></span>
-            <%}%></a>
-            <a href="/usercenter/" class="btn btn-link btn-link-move" style="text-decoration:none;">基本信息</a>
-            <a href="/account/" class="btn btn-link btn-link-move" style="text-decoration:none;" id="self">账户信息</a>
+      <div class="row row-plus" style="border-bottom:1px #ccc solid;">
+        <a href="/myblog/<%=user._id%>" class="btn btn-link btn-link-move" style="text-decoration:none;">我的文章</a>
+        <a href="/messlist/" class="btn btn-link btn-link-move" style="text-decoration:none;">我的消息
+          <%if (totalmess){%>
+            <span class="badge">
+              <%= totalmess %>
+            </span>
+            <%}%>
+        </a>
+        <a href="/usercenter/" class="btn btn-link btn-link-move" style="text-decoration:none;">基本信息</a>
+        <a href="/account/" class="btn btn-link btn-link-move" style="text-decoration:none;" id="self">账户信息</a>
+      </div>
+      <div class="row" style="margin-top:20px">
+        <div class="col-md-3">
+          <font class="third-title">邮箱</font>
+          <font class="binding">&nbsp;未绑定</font><br>
+          <font class="description">可用邮箱加密码登录寻亲网</font>
         </div>
-        <div class="row" style="margin-top:20px">
-        	<div class="col-md-3" >
-            	<font class="third-title">邮箱</font>
-            	<font class="binding">&nbsp;未绑定</font><br>
-            	<font class="description">可用邮箱加密码登录寻亲网</font>
-            </div>
-        	<div class="col-md-2  col-md-offset-7">
-            	<div class="btn btn-primary">立即绑定</div>
-            </div>
+        <div class="col-md-2  col-md-offset-7">
+          <div class="btn btn-primary">立即绑定</div>
         </div>
-        <hr>
-        <div class="row"  style="color:#000;font-weight:900">
-        	<div class="col-md-3">
-            	<font class="third-title">手机</font>
-            	<font class="binding">&nbsp;未绑定</font><br>
-            	<font class="description">可用手机加密码登录寻亲网</font>
-            </div>
-        	<div class="col-md-2 col-md-offset-7">
-            	<div class="btn btn-primary">立即绑定</div>
-            </div>
+      </div>
+      <hr>
+      <div class="row" style="color:#000;font-weight:900">
+        <div class="col-md-3">
+          <font class="third-title">手机</font>
+          <font class="binding">&nbsp;未绑定</font><br>
+          <font class="description">可用手机加密码登录寻亲网</font>
         </div>
-        <hr>
-        <div class="row"  style="color:#000;font-weight:900">
-        	<div class="col-md-3">
-            	<font class="third-title">密码</font>
-            	<font class="binding">&nbsp;已设置</font></div>
-        	<div class="col-md-2  col-md-offset-7">
-            	<div class="btn btn-primary">修改</div>
-            </div>
+        <div class="col-md-2 col-md-offset-7">
+          <div class="btn btn-primary">立即绑定</div>
         </div>
-        <hr>
-        <div class="row"  style="color:#000;font-weight:900">
-        	<div class="col-md-3">
-            	<font class="third-title">社交帐号</font><br>
-                <font class="description">第三方可直接登录</font>
-            </div>
+      </div>
+      <hr>
+      <div class="row" style="color:#000;font-weight:900">
+        <div class="col-md-3">
+          <font class="third-title">密码</font>
+          <font class="binding">&nbsp;已设置</font>
         </div>
-        <br>
-        <div class="row" align="center">
-        	<div class="col-md-4">
-            	<div class="third-col">
-                	<img src="/images/qq.png">
-                    <a class="btn btn-primary" style="margin:20%">立即绑定</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-            	<div class="third-col">
-                	<img src="/images/weixin.png">
-                    <a class="btn btn-primary" style="margin:20%">立即绑定</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-            	<div class="third-col">
-                	<img src="/images/weibo.png">
-                    <a class="btn btn-primary" style="margin:20%">立即绑定</a>
-                </div>
-            </div>
-        	
+        <div class="col-md-2  col-md-offset-7">
+          <div class="btn btn-primary">修改</div>
         </div>
-        
-     </div>
-            
-</div>
+      </div>
+      <hr>
+      <div class="row" style="color:#000;font-weight:900">
+        <div class="col-md-3">
+          <font class="third-title">社交帐号</font><br>
+          <font class="description">第三方可直接登录</font>
+        </div>
+      </div>
+      <br>
+      <div class="row" align="center">
+        <div class="col-md-4">
+          <div class="third-col">
+            <img src="/images/qq.png">
+            <a class="btn btn-primary" style="margin:20%">立即绑定</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="third-col">
+            <img src="/images/weixin.png">
+            <a class="btn btn-primary" style="margin:20%">立即绑定</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="third-col">
+            <img src="/images/weibo.png">
+            <a class="btn btn-primary" style="margin:20%">立即绑定</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>

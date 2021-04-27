@@ -1,155 +1,168 @@
 <% include ../includes/header.html %>
-<!--窗口阴影-->
-<div class="window-shadow"></div>
-        
-<!--主要内容-->
-<div class="container main-container">
+  <!--窗口阴影-->
+  <div class="window-shadow"></div>
+
+  <!--主要内容-->
+  <div class="container main-container">
     <div class="header-container">
-        <div class="row">
-            <div class="col-md-2" style="padding:5%;">
-            	<img src="/images/<%= user.icon %>" style="width:100px; height:100px;" id="myicon">
-                <div class="onload-img" align="center">
-                	<font style="font-size:14px;">修改图像</font>
-                    <input type="file" onChange="onloadImg(this.files)" style="opacity:0;width:100%;height:30px;margin-top:-30px; cursor:pointer; z-index:999;">
-                </div>
-            </div>
-            <div class="col-md-5" style="padding:5%;">
-                <div><h1><%= user.name %></h1></div>
-                <div>爱心值：
-                    <span>
-                        <img src="/images/love.jpg" style="width:20px; height:20px; ">
-                        <img src="/images/love.jpg" style="width:20px; height:20px; ">
-                        <img src="/images/love.jpg" style="width:20px; height:20px; ">
-                    </span>
-                </div>
-            </div>
+      <div class="row">
+        <div class="col-md-2" style="padding:5%;">
+          <img src="/images/<%= user.icon %>" style="width:100px; height:100px;" id="myicon">
+          <div class="onload-img" align="center">
+            <font style="font-size:14px;">修改图像</font>
+            <input type="file" onChange="onloadImg(this.files)"
+              style="opacity:0;width:100%;height:30px;margin-top:-30px; cursor:pointer; z-index:999;">
+          </div>
         </div>
+        <div class="col-md-5" style="padding:5%;">
+          <div>
+            <h1>
+              <%= user.name %>
+            </h1>
+          </div>
+          <div>爱心值：
+            <span>
+              <img src="/images/love.jpg" style="width:20px; height:20px; ">
+              <img src="/images/love.jpg" style="width:20px; height:20px; ">
+              <img src="/images/love.jpg" style="width:20px; height:20px; ">
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="container second-container">
-        <div class="row row-plus" style="border-bottom:1px #ccc solid;">
-            <a href="/myblog/<%=user._id%>" class="btn btn-link btn-link-move" style="text-decoration:none;">我的文章</a>
-            <a href="/messlist" class="btn btn-link btn-link-move" style="text-decoration:none;">我的消息
-                <%if (totalmess){%>
-            <span class="badge"><%= totalmess %></span>
-            <%}%></a>
-            <a href="usercenter" class="btn btn-link btn-link-move" style="text-decoration:none;" id="self">基本信息</a>
-            <a href="/account" class="btn btn-link btn-link-move" style="text-decoration:none;">账户信息</a>
+      <div class="row row-plus" style="border-bottom:1px #ccc solid;">
+        <a href="/myblog/<%=user._id%>" class="btn btn-link btn-link-move" style="text-decoration:none;">我的文章</a>
+        <a href="/messlist" class="btn btn-link btn-link-move" style="text-decoration:none;">我的消息
+          <%if (totalmess){%>
+            <span class="badge">
+              <%= totalmess %>
+            </span>
+            <%}%>
+        </a>
+        <a href="usercenter" class="btn btn-link btn-link-move" style="text-decoration:none;" id="self">基本信息</a>
+        <a href="/account" class="btn btn-link btn-link-move" style="text-decoration:none;">账户信息</a>
+      </div>
+      <!--信息查看框-->
+      <div class="container-mess">
+        <div class="img-update">
+          <a href="###" onClick="showMessdialog('.window-shadow','.modify-mess')"><img src="/images/edit.png"
+              style="width:33%; height:100%">编辑</a>
         </div>
-        <!--信息查看框-->
-        <div class="container-mess">
-        	<div class="img-update">
-            	<a href="###" onClick="showMessdialog('.window-shadow','.modify-mess')"><img src="/images/edit.png" style="width:33%; height:100%">编辑</a>
-            </div>
-        	<div class="row-mess">
-            	<div class="col-2-mess">昵称</div>
-                <div class="col-10-mess"><%= user.name %></div>
-            </div>
-			<div class="row-mess">
-            	<div class="col-2-mess">性别</div>
-                <div class="col-10-mess"><%= user.sex %></div>
-            </div>
-			<div class="row-mess">
-            	<div class="col-2-mess">邮箱</div>
-                <div class="col-10-mess"><%= user.email %></div>
-            </div>
-			<div class="row-mess">
-            	<div class="col-2-mess">电话</div>
-                <div class="col-10-mess"><%= user.tel %></div>
-            </div>        	
+        <div class="row-mess">
+          <div class="col-2-mess">昵称</div>
+          <div class="col-10-mess">
+            <%= user.name %>
+          </div>
         </div>
-        
-        <!--信息修改框-->
-        <div class="modify-mess">
-        	<div style="margin-left:16%;font-size:23px;padding-top:10px;">
-            	<span>编辑个人信息</span><span style="margin-left:65%;cursor:pointer" onClick="colseDialog('.window-shadow','.modify-mess')">X</span>
-            </div>
-            <hr>
-            <form class="form-horizontal" role="form" action="/updateUsermess/" method="post" style="padding-bottom:30px;">
-                    <div class="form-group">
-                        <label for="username" class="col-sm-3 control-label">昵称:</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control mess" id="username" name="username" autofocus placeholder="请输入你的昵称" value="<%= user.name %>">
-                            </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">性别:</label>
-                        <% if (user.sex === '男')
-                        {%>
-                        <label class="radio-inline">
-                            <input type="radio"  value="男" name="usersex" style="margin-left:10px" checked>男
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio"  value="女" name="usersex">女
-                        </label>
-                        <%
-                        }else{
-                        %>
-                        <label class="radio-inline">
-                            <input type="radio"  value="男" name="usersex" style="margin-left:10px">男
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio"  value="女" name="usersex" checked>女
-                        </label>
-                        <%
-                        }
-                        %>
-                    </div>
-                    <div class="form-group">
-                            <label for="userphonenum" class="col-sm-3 control-label">电话:</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control mess" id="usertel" name="usertel" placeholder="输入你的联系电话" value="<%= user.tel %>">
-                            </div>
-                    </div>
-                    <div class="form-group">
-                            <label for="useremail" class="col-sm-3 control-label">邮箱:</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control mess" id="useremail" name="useremail" placeholder="输入你的电子邮箱" value="<%= user.email%>">
-                            </div>
-                    </div>       
-                    <br><br>
-                    <div class="form-group">
-                        <div class="col-sm-9 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary ">提交</button>
-                            <button type="reset" class="btn btn-default">重置
-                            </button>
-                        </div>
-                    </div>
-                        
-            </form>
+        <div class="row-mess">
+          <div class="col-2-mess">性别</div>
+          <div class="col-10-mess">
+            <%= user.sex %>
+          </div>
         </div>
-     </div>
-            
-</div>
+        <div class="row-mess">
+          <div class="col-2-mess">邮箱</div>
+          <div class="col-10-mess">
+            <%= user.email %>
+          </div>
+        </div>
+        <div class="row-mess">
+          <div class="col-2-mess">电话</div>
+          <div class="col-10-mess">
+            <%= user.tel %>
+          </div>
+        </div>
+      </div>
 
-<script type="text/javascript">
-    function showMessdialog(shadow, modify)
-{
-    var shadow_div = document.querySelector(shadow);
-    var modify_div = document.querySelector(modify);
-    shadow_div.style.display = "block";
-    modify_div.style.display = "block";     
-}
+      <!--信息修改框-->
+      <div class="modify-mess">
+        <div style="margin-left:16%;font-size:23px;padding-top:10px;">
+          <span>编辑个人信息</span><span style="margin-left:65%;cursor:pointer"
+            onClick="colseDialog('.window-shadow','.modify-mess')">X</span>
+        </div>
+        <hr>
+        <form class="form-horizontal" role="form" action="/updateUsermess/" method="post" style="padding-bottom:30px;">
+          <div class="form-group">
+            <label for="username" class="col-sm-3 control-label">昵称:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control mess" id="username" name="username" autofocus placeholder="请输入你的昵称"
+                value="<%= user.name %>">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">性别:</label>
+            <% if (user.sex==='男' ) {%>
+              <label class="radio-inline">
+                <input type="radio" value="男" name="usersex" style="margin-left:10px" checked>男
+              </label>
+              <label class="radio-inline">
+                <input type="radio" value="女" name="usersex">女
+              </label>
+              <% }else{ %>
+                <label class="radio-inline">
+                  <input type="radio" value="男" name="usersex" style="margin-left:10px">男
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" value="女" name="usersex" checked>女
+                </label>
+                <% } %>
+          </div>
+          <div class="form-group">
+            <label for="userphonenum" class="col-sm-3 control-label">电话:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control mess" id="usertel" name="usertel" placeholder="输入你的联系电话"
+                value="<%= user.tel %>">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="useremail" class="col-sm-3 control-label">邮箱:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control mess" id="useremail" name="useremail" placeholder="输入你的电子邮箱"
+                value="<%= user.email%>">
+            </div>
+          </div>
+          <br><br>
+          <div class="form-group">
+            <div class="col-sm-9 col-md-offset-4">
+              <button type="submit" class="btn btn-primary ">提交</button>
+              <button type="reset" class="btn btn-default">重置
+              </button>
+            </div>
+          </div>
 
-function colseDialog(shadow, modify)
-{
-    var shadow_div = document.querySelector(shadow);
-    var modify_div = document.querySelector(modify);
-    shadow_div.style.display = "none";
-    modify_div.style.display = "none";  
-}
+        </form>
+      </div>
+    </div>
 
-var pic;
-function onloadImg(files) 
-{
-    if (files.length){
+  </div>
+
+  <script type="text/javascript">
+    function showMessdialog(shadow, modify) {
+      var shadow_div = document.querySelector(shadow);
+      var modify_div = document.querySelector(modify);
+      shadow_div.style.display = "block";
+      modify_div.style.display = "block";
+    }
+
+    function colseDialog(shadow, modify) {
+      var shadow_div = document.querySelector(shadow);
+      var modify_div = document.querySelector(modify);
+      shadow_div.style.display = "none";
+      modify_div.style.display = "none";
+    }
+
+    var pic;
+    function onloadImg(files) {
+      if (files.length) {
         var file = files[0];
         var reader = new FileReader();
-        reader.onload = function(e) {
-            pic = e.target.result;
-            document.getElementById("myicon").src = pic;    
+        reader.onload = function (e) {
+          pic = e.target.result;
+          document.getElementById("myicon").src = pic;
         }
         reader.readAsDataURL(file);
+      }
     }
-}
-</script>
-<% include ../includes/footer.html %>
+  </script>
+  <% include ../includes/footer.html %>

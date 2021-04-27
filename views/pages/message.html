@@ -1,123 +1,141 @@
 <% include ../includes/header.html %>
-<style type="text/css">
-		.message{
-			padding:0 0px;
-		}
-		.message div a{
-			color: blue;
-		}
+  <style type="text/css">
+    .message {
+      padding: 0 0px;
+    }
 
-		#replydialog{
-			display: none;
-		}
+    .message div a {
+      color: blue;
+    }
 
-		.date{
-			font-size: 0.9rem;
-			color: #bbb;
-		}
-	</style>
-	<!--主要内容-->
-<div class="container main-container">
+    #replydialog {
+      display: none;
+    }
+
+    .date {
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+  </style>
+  <!--主要内容-->
+  <div class="container main-container">
     <div class="header-container">
-        <div class="row">
-            <div class="col-md-2" style="padding:5%;">
-            	<img src="/images/<%= user.icon %>" style="width:100px; height:100px;" id="myicon">
-                <div class="onload-img" align="center">
-                	<font style="font-size:14px;">修改图像</font>
-                    <input type="file" onChange="onloadImg(this.files)" style="opacity:0;width:100%;height:30px;margin-top:-30px; cursor:pointer; z-index:999;">
-                </div>
-            </div>
-            <div class="col-md-5" style="padding:5%;">
-                <div><h1><%=user.name%></h1></div>
-                <div>爱心值：
-                    <span>
-                        <img src="/images/love.jpg" style="width:20px; height:20px; ">
-                        <img src="/images/love.jpg" style="width:20px; height:20px; ">
-                        <img src="/images/love.jpg" style="width:20px; height:20px; ">
-                    </span>
-                </div>
-            </div>
+      <div class="row">
+        <div class="col-md-2" style="padding:5%;">
+          <img src="/images/<%= user.icon %>" style="width:100px; height:100px;" id="myicon">
+          <div class="onload-img" align="center">
+            <font style="font-size:14px;">修改图像</font>
+            <input type="file" onChange="onloadImg(this.files)"
+              style="opacity:0;width:100%;height:30px;margin-top:-30px; cursor:pointer; z-index:999;">
+          </div>
         </div>
+        <div class="col-md-5" style="padding:5%;">
+          <div>
+            <h1>
+              <%=user.name%>
+            </h1>
+          </div>
+          <div>爱心值：
+            <span>
+              <img src="/images/love.jpg" style="width:20px; height:20px; ">
+              <img src="/images/love.jpg" style="width:20px; height:20px; ">
+              <img src="/images/love.jpg" style="width:20px; height:20px; ">
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="container second-container">
-        <div class="row row-plus" style="border-bottom:1px #ccc solid;">
-            <a href="/myblog/<%=user._id%>" class="btn btn-link btn-link-move" style="text-decoration:none;">我的文章</a>
-            <a href="/messlist" class="btn btn-link btn-link-move" style="text-decoration:none;" id="self">我的消息
-                <%if (totalmess){%>
-            <span class="badge"><%= totalmess %></span>
-            <%}%></a>
-            <a href="/usercenter" class="btn btn-link btn-link-move" style="text-decoration:none;" >基本信息</a>
-            <a href="/account" class="btn btn-link btn-link-move" style="text-decoration:none;">账户信息</a>
+      <div class="row row-plus" style="border-bottom:1px #ccc solid;">
+        <a href="/myblog/<%=user._id%>" class="btn btn-link btn-link-move" style="text-decoration:none;">我的文章</a>
+        <a href="/messlist" class="btn btn-link btn-link-move" style="text-decoration:none;" id="self">我的消息
+          <%if (totalmess){%>
+            <span class="badge">
+              <%= totalmess %>
+            </span>
+            <%}%>
+        </a>
+        <a href="/usercenter" class="btn btn-link btn-link-move" style="text-decoration:none;">基本信息</a>
+        <a href="/account" class="btn btn-link btn-link-move" style="text-decoration:none;">账户信息</a>
+      </div>
+      <% if (!error){ for (var i=messlist.length - 1; i>= 0; i--){
+        %>
+        <div style="margin-top: 40px;">
+          <% if (messlist[i].actiontype==1) {%>
+            <div style="display: flex;align-items: center;">
+              <div class="user-img"><a href="#"><img src="/images/<%= messlist[i].reusericon %>" /></a>
+              </div>
+              <div class="message">
+                <div><a href="#">
+                    <%= messlist[i].reusername %>
+                  </a>
+                  喜欢了你的文章<a href="/blog/<%= messlist[i].blogid %>">《<%= messlist[i].blogname %>》</a>
+                </div>
+                <div class="date">
+                  <%= messlist[i].date %>
+                </div>
+              </div>
+            </div>
+            <% }else if (messlist[i].actiontype==2){ %>
+              <div style="display: flex;align-items: center;">
+                <div class="user-img">
+                  <a href="#"><img src="/images/<%= messlist[i].reusericon %>" /></a>
+                </div>
+                <div class="message">
+                  <div><a href="#">
+                      <%= messlist[i].reusername %>
+                    </a>
+                    评论了你的文章<a href="/blog/<%= messlist[i].blogid %>">《<%= messlist[i].blogname %>》</a>
+                  </div>
+                  <div class="date">
+                    <%= messlist[i].date %>
+                  </div>
+                </div>
+              </div>
+              <div style="margin:10px">
+                <%= messlist[i].content %>
+                  <span
+                    onclick="showReplyDialog('<%= messlist[i].reusername %>', '<%= i %>','<%= messlist[i].reuserid %>')"
+                    style="margin-left:50px;color: #bbb; font-size: 0.9rem; cursor: pointer;">回复</span>
+              </div>
+              <div class="dialog<%= i %>" id="replydialog">
+                <textarea name="reply" id="<%= i %>" class="form-control" rows="3"></textarea>
+                <button name="btn" onclick="reply('<%= messlist[i].blogid %>', '<%= i %>', '<%= messlist[i].hostid %>')"
+                  class="btn btn-primary">发送</button>
+              </div>
+              <% }else{ %>
+                <div style="display: flex;align-items: center;">
+                  <div class="user-img"><a href="#"><img src="/images/<%= messlist[i].reusericon %>" /></a></div>
+                  <div class="message">
+                    <div><a href="#">
+                        <%= messlist[i].reusername %>
+                      </a>
+                      在文章<a href="/blog/<%= messlist[i].blogid %>">《<%= messlist[i].blogname %>》</a>中回复了你
+                    </div>
+                    <div>
+                      <%= messlist[i].date %>
+                    </div>
+                  </div>
+                </div>
+                <div style="margin:10px">@<a href="#">
+                    <%= user.name %>
+                  </a>:<%= messlist[i].content %><span
+                      onclick="showReplyDialog('<%= messlist[i].reusername %>', '<%= i %>','<%= messlist[i].reuserid %>')"
+                      style="margin-left:50px;color: #bbb; font-size: 0.9rem; cursor: pointer;">回复</span></div>
+                <div class="dialog<%= i %>" id="replydialog">
+                  <textarea name="reply" id="<%= i %>" class="form-control" rows="3"></textarea>
+                  <button name="btn"
+                    onclick="reply('<%= messlist[i].blogid %>', '<%= i %>', '<%= messlist[i].hostid %>')"
+                    class="btn btn-primary">发送</button>
+                </div>
+                <% } %>
         </div>
-		<% 
-			if (!error){
-			for (var i = messlist.length - 1; i >= 0; i--){
-		%>
-		<div style="margin-top: 40px;">
-			<% if (messlist[i].actiontype == 1) {%>
-			<div style="display: flex;align-items: center;">
-				<div class="user-img"><a href="#"><img src="/images/<%= messlist[i].reusericon %>" /></a>
-				</div>
-				<div class="message">
-					<div><a href="#"><%= messlist[i].reusername %></a>
-					喜欢了你的文章<a href="/blog/<%= messlist[i].blogid %>">《<%= messlist[i].blogname %>》</a>
-					</div>
-					<div class="date"><%= messlist[i].date %></div>
-				</div>
-			</div>
-			<%
-			}else if (messlist[i].actiontype == 2){
-			%>
-			<div style="display: flex;align-items: center;">
-				<div class="user-img">
-					<a href="#"><img src="/images/<%= messlist[i].reusericon %>" /></a>
-				</div>
-				<div class="message">
-					<div><a href="#"><%= messlist[i].reusername %></a>
-					评论了你的文章<a href="/blog/<%= messlist[i].blogid %>">《<%= messlist[i].blogname %>》</a>
-					</div>
-					<div class="date"><%= messlist[i].date %></div>
-				</div>
-			</div>
-			<div style="margin:10px"><%= messlist[i].content %>
-				<span onclick="showReplyDialog('<%= messlist[i].reusername %>', '<%= i %>','<%= messlist[i].reuserid %>')" style="margin-left:50px;color: #bbb; font-size: 0.9rem; cursor: pointer;">回复</span>
-			</div>
-			<div class="dialog<%= i %>" id="replydialog">
-				<textarea name="reply" id="<%= i %>" class="form-control" rows="3"></textarea>
-				<button name="btn" onclick="reply('<%= messlist[i].blogid %>', '<%= i %>', '<%= messlist[i].hostid %>')" class="btn btn-primary">发送</button>
-			</div>
-			<%
-			}else{
-			%>
-			<div style="display: flex;align-items: center;">
-				<div class="user-img"><a href="#"><img src="/images/<%= messlist[i].reusericon %>" /></a></div>
-				<div class="message">
-					<div><a href="#"><%= messlist[i].reusername %></a>
-					在文章<a href="/blog/<%= messlist[i].blogid %>">《<%= messlist[i].blogname %>》</a>中回复了你
-					</div>
-					<div><%= messlist[i].date %></div>
-				</div>
-			</div>
-			<div style="margin:10px">@<a href="#"><%= user.name %></a>:<%= messlist[i].content %><span onclick="showReplyDialog('<%= messlist[i].reusername %>', '<%= i %>','<%= messlist[i].reuserid %>')" style="margin-left:50px;color: #bbb; font-size: 0.9rem; cursor: pointer;">回复</span></div>
-			<div class="dialog<%= i %>" id="replydialog">
-				<textarea name="reply" id="<%= i %>" class="form-control" rows="3"></textarea>
-				<button name="btn" onclick="reply('<%= messlist[i].blogid %>', '<%= i %>', '<%= messlist[i].hostid %>')" class="btn btn-primary">发送</button>
-			</div>
-			<%
-			}
-			%>
-			</div>
-			<%
-			}
-		}else{
-			%>
-			<div>你目前还没有任何消息，好冷清啊！</div>
-		<%
-			}
-		%>
-	</div>
-</div>
+        <% } }else{ %>
+          <div>你目前还没有任何消息，好冷清啊！</div>
+          <% } %>
+    </div>
+  </div>
 
-<script type="text/javascript" src="/js/message.js"></script>
+  <script type="text/javascript" src="/js/message.js"></script>
 
-<% include ../includes/footer.html %>
+  <% include ../includes/footer.html %>
